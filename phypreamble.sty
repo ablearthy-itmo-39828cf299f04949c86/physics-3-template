@@ -1,0 +1,127 @@
+\ProvidesPackage{phypreamble}
+
+\usepackage[left=3cm,top=2cm,bottom=2cm,right=1cm]{geometry}
+
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{multirow}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks, urlcolor={black},
+    linkcolor={black}, citecolor={black}, filecolor={black}
+}
+
+\usepackage{microtype}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{extarrows}
+\usepackage{physics}
+
+\usepackage{polyglossia}
+\setmainlanguage[babelshorthands = true]{russian}
+\setotherlanguage{english}
+
+\usepackage{xltxtra,unicode-math}
+
+\defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
+
+
+\setmainfont{Times New Roman}
+
+\setromanfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Noto Sans Mono}
+
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\newfontfamily{\cyrillicfontrm}{Times New Roman}
+\newfontfamily{\cyrillicfonttt}{Arial}
+\newfontfamily{\cyrillicfontsf}{Courier New}
+
+\setmathfont{XITS Math}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{import}
+
+\renewcommand{\baselinestretch}{1.4}
+\setlength{\parindent}{1.27cm}
+
+\usepackage{enumitem}
+\setlist[enumerate,itemize]{leftmargin=12.7mm} % Отступы в списках
+
+\makeatletter
+    \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
+\makeatother
+\setlist{nolistsep}                           % Нет отступов между пунктами списка
+\renewcommand{\labelitemi}{--}                % Маркер списка --
+\renewcommand{\labelenumi}{\asbuk{enumi})}    % Список второго уровня
+\renewcommand{\labelenumii}{\arabic{enumii})} % Список третьего уровня
+
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\MakeTextUppercase}
+\renewcommand{\cftsecfont}{\hspace{0pt}}
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand\cftsecpagefont{\mdseries}
+\setcounter{tocdepth}{3}
+
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
+
+\usepackage{textcase}
+\makeatletter
+\let\oldcontentsline\contentsline
+\def\contentsline#1#2{
+    \expandafter\ifx\csname l@#1\endcsname\l@section
+        \expandafter\@firstoftwo
+    \else
+        \expandafter\@secondoftwo
+    \fi
+    {\oldcontentsline{#1}{\MakeTextUppercase{#2}}}
+    {\oldcontentsline{#1}{#2}}
+}
+\makeatother
+
+\usepackage[compact,explicit]{titlesec}
+\titleformat{\section}{}{}{12.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.5em}}
+\titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1\vspace{1em}}
+\titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
+\titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
+
+\usepackage{xfrac}                  % Красивые дроби
+\usepackage[
+    locale = DE,
+    list-separator       = {;\,},
+    list-final-separator = {;\,},
+    list-pair-separator  = {;\,},
+    list-units           = single,
+    range-units          = single,
+    range-phrase={\text{\ensuremath{-}}},
+    % quotient-mode        = fraction, % красивые дроби могут не соответствовать ГОСТ
+    fraction-function    = \sfrac,
+    separate-uncertainty,
+    ]{siunitx}[=v2]                 % Размерности SI
+\sisetup{inter-unit-product = \ensuremath{{}\cdot{}}}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\newtheorem{theorem}{Теорема}
+
+
+\usepackage[inline]{asymptote}
+\def\asydir{asy}
+
+\usepackage{wrapfig}
+
+\usepackage{tabularx}
+\usepackage{etoolbox}
+\newcounter{rowcnt}
+\newcommand\rownum{\ifnumequal{\value{rowcnt}}{0}{№ п/п}{\therowcnt.}\refstepcounter{rowcnt}}
+\AtEndEnvironment{tabularx}{\setcounter{rowcnt}{0}}
