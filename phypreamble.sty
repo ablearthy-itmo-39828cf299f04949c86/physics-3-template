@@ -19,7 +19,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{extarrows}
-\usepackage{physics}
+% \usepackage{physics}
 
 \usepackage{polyglossia}
 \setmainlanguage[babelshorthands = true]{russian}
@@ -102,8 +102,9 @@
     % quotient-mode        = fraction, % красивые дроби могут не соответствовать ГОСТ
     fraction-function    = \sfrac,
     separate-uncertainty,
-    ]{siunitx}[=v2]                 % Размерности SI
+    ]{siunitx}                 % Размерности SI
 \sisetup{inter-unit-product = \ensuremath{{}\cdot{}}}
+\input{siunitx.cfg}
 
 \usepackage{tikz}
 \usepackage{pgfplots}
